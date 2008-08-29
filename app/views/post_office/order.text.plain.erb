@@ -1,0 +1,7 @@
+Objednavka je tam Pepku!
+  
+<%- @order.line_items.each do |li| -%>
+	<%= "#{li.quantity}x #{li.product} #{number_to_currency(li.total_price, :unit => "", :delimiter => " ", :precision => 0)+" Kč"}" %>
+<%- end -%>
+
+Celkova cena: <%= number_to_currency(@order.line_items.collect(&:total_price).inject{ |a,b| a+b }, :unit => "", :delimiter => " ", :precision => 0)+" Kč" %>

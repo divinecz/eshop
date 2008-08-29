@@ -1,0 +1,3 @@
+page.select("div.flash").each { |div| div.fade }
+
+page.replace_html("cart", :partial => "cart", :object => @cart)

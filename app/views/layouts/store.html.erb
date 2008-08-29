@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="description" content="<%= description %>"/>
+	<meta name="keywords" content="<%= keywords %>"/>
+	<title>E-shop — <%= @title || controller.action_name.humanize %></title>
+	<%= javascript_include_tag :defaults %>
+</head>
+
+<body id="<%= controller.action_name %>">
+	<div id="wrapper">
+		<div id="head">
+			<%= link_to "home", root_url %>
+			<%= login %>
+		</div>
+		
+		<% flash.each do |key, msg| %>
+		  <%= content_tag :div, msg, :id => key, :class => 'flash' %>
+		<% end %>
+		
+		<div id="content">
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

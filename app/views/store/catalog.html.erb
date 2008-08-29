@@ -1,0 +1,22 @@
+<h1>Katalog: <%= @category.full_title %>!</h1>
+
+<div id="categories">
+	<%= Category.all_to_html -%>
+</div>
+
+<div id="filters">
+	<%- form_for :filter, :url => {:action => :catalog, :category => params[:category]} do |f| -%>
+		<%= f.select :manufacturer, @manufacturers.collect{ |m| [m.name, m.id]}, { :include_blank => 'Výrobce'} %>
+		<%= f.select :sort, [['Ceny', 1], ['Názvu', 2]], { :include_blank => 'Řadit dle'} %>
+		<%= submit_tag 'Použít' %>
+	<%- end -%>
+	<%#= @manufacturers.collect(&:name).join(', ') %>
+</div>
+
+<div id="products">
+	<%= render :partial => 'product', :collection => @products %>
+</div>
+
+<%= hidden_div_if(@cart.size.zero?, :id => 'cart') %>
+	<%= render :partial => "cart", :object => @cart %>
+</div>

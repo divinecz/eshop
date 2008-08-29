@@ -1,0 +1,3 @@
+page.select("div.flash").each { |div| div.fade }
+
+page[:cart].visual_effect :fade, :duration => 0.3

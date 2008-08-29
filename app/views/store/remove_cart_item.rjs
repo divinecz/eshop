@@ -1,0 +1,5 @@
+page.select("div.flash").each { |div| div.fade }
+
+page[:cart].visual_effect(:fade, :duration => 0.3) if @cart.size < 1 
+
+page.replace_html("cart", :partial => "cart", :object => @cart)

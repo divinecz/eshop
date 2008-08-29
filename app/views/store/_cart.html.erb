@@ -1,0 +1,18 @@
+<div class="cart-title">Your Cart</div> 
+<table> 
+	
+	<%- form_tag :action => 'update_cart' do -%>
+		<%= render :partial => 'cart_item', :collection => cart.items %>
+	<%- end -%>
+	
+<tr class="total-line"> 
+<td colspan="2">Total</td> 
+<td class="total-cell"><%= currency(cart.total_price) %></td> 
+</tr> 
+</table> 
+
+<%= button_to "Checkout", :action => :checkout %>
+
+<%- form_remote_tag :url => { :action => 'empty_cart' } do -%>
+	<%= submit_tag "Vyprázdnit" %>
+<%- end -%>
