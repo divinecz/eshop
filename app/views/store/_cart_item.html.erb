@@ -1,11 +1,15 @@
-<% if cart_item == @item %> <%# TODO: Mozna udelat helper metodu — metoda(podminka, tag, parametry pri podminka, [parametry pri !podminka]) %>
-<tr id="current_item"> 
-<% else %> 
-<tr> 
-<% end %>
+<tr class="title">
+	<td colspan="2">
+		<%= link_to_remote "[x]", {:url => { :action => "remove_cart_item", :id => cart_item.id }}, :href => url_for(:action => "remove_cart_item", :id => cart_item.id) %>
+		<%= h(cart_item.title) %>
+	</td>
+</tr>
 
-<td><%= text_field_tag "quantities[]", cart_item.quantity, :size => 2, :id => 'cart_item_'+cart_item.id.to_s %>&times;</td>
-<td><%= h(cart_item.title) %></td>
-<td><%= currency(cart_item.price) %></td>
-<td><%= link_to_remote "[x]", {:url => { :action => "remove_cart_item", :id => cart_item.id }}, :href => url_for(:action => "remove_cart_item", :id => cart_item.id) %> </td>
+<% if cart_item == @item %> <%# TODO: Mozna udelat helper metodu — metoda(podminka, tag, parametry pri podminka, [parametry pri !podminka]) %>
+<tr class="current_item"> 
+<% else %> 
+<tr>
+<% end %>
+<td><%= text_field_tag "quantities[]", cart_item.quantity, :size => 2, :id => 'cart_item_'+cart_item.id.to_s %> ks</td>
+<td class="right"><%= currency(cart_item.price) %></td>
 </tr> 

@@ -1,0 +1,18 @@
+<ul>
+	<%- categories.each do |category| -%>
+		<%- next if category.leaf? && !category.has_products? -%>
+		
+		<%- if category.leaf? -%>
+			<li class="leaf">
+			<%= link_to category, catalog_path(category) -%>
+		<%- elsif !category.opened?(params[:category]) -%>
+			<li class="close">
+			<%= link_to category, catalog_path(category) -%>
+		<%- else -%>
+			<li class="open">
+			<%= link_to category, catalog_path(category.parent) -%>
+			<%= render :partial => 'category', :locals => { :categories => category.children } -%>
+		<%- end -%>
+		</li>
+	<%- end -%>
+</ul>

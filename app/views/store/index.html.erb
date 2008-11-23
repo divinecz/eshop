@@ -1,13 +1,5 @@
-<div id="categories">
-	<%= Category.all_to_html -%>
-</div>
-
 <h1>Holy monkey! E-shop!</h1>
 
 <div id="products">
 	<%= render :partial => 'product', :collection => @products %>
-</div>
-
-<%= hidden_div_if(@cart.size.zero?, :id => 'cart') %>
-	<%= render :partial => "cart", :object => @cart %>
 </div>

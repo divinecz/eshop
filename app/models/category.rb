@@ -1,8 +1,36 @@
 class Category < ActiveRecord::Base
   has_and_belongs_to_many :keywords
   has_and_belongs_to_many :products
+  belongs_to :parent, :class_name => "Category", :foreign_key => "parent_id"
+  has_many :children, :class_name => "Category", :foreign_key => "parent_id"
   
   validates_presence_of :title, :description
+  
+  def self.find_all_top_categories
+    find_all_by_parent_id(nil)
+  end
+
+  def opened?(id)
+    self_and_all_children.collect(&:id).include?(id.to_i)
+  end
+
+  def has_products?
+    !products.empty?
+  end
+  
+  def leaf?
+    children.empty?
+  end
+  
+  def self_and_all_children
+    [self] + all_children
+  end
+  
+  def all_children
+    has_children? ? children + children.collect(&:all_children).first : []
+  end
+  
+  
   
   def all_parents
     has_parent? ? parent.all_parents + [parent] : []
@@ -24,10 +52,6 @@ class Category < ActiveRecord::Base
     "<ul>#{find_all_top_categories.collect(&:to_html)}</ul>" #TODO: no toto by snad melo byt v hlprech, nie?
   end
   
-  def self.find_all_top_categories
-    find_all_by_parent_id(nil)
-  end
-  
   def to_html
     return "" if all_products_for_sale.empty?
     has_children? ? "<li><a href=\"/catalog/#{id}\">#{title}</a><ul>#{children.collect(&:to_html)}</ul></li>" : "<li><a href=\"/catalog/#{id}\">#{title}</a></li>" #TODO: no toto by snad melo byt v hlprech, nie?
@@ -41,10 +65,6 @@ class Category < ActiveRecord::Base
     parent_id != nil
   end
   
-  def parent
-    self.class.find(self.parent_id) if has_parent?
-  end
-  
   def parent=(category)
     self.parent_id = category.id
   end
@@ -53,11 +73,7 @@ class Category < ActiveRecord::Base
     !children.empty?
   end
   
-  def children
-    self.class.find_all_by_parent_id(self.id)
-  end
-  
-  def to_se
+  def to_s
     title
   end
 end

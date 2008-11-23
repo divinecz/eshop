@@ -1,13 +1,13 @@
-<div class="cart-title">Your Cart</div> 
+<h3>košík</h3>
 <table> 
 	
 	<%- form_tag :action => 'update_cart' do -%>
 		<%= render :partial => 'cart_item', :collection => cart.items %>
 	<%- end -%>
 	
-<tr class="total-line"> 
-<td colspan="2">Total</td> 
-<td class="total-cell"><%= currency(cart.total_price) %></td> 
+<tr class="total"> 
+	<td>Celkem s DPH</td> 
+	<td class="right"><%= currency(cart.total_price) %></td> 
 </tr> 
 </table> 
 

@@ -7,23 +7,81 @@
 	<meta name="description" content="<%= description %>"/>
 	<meta name="keywords" content="<%= keywords %>"/>
 	<title>E-shop — <%= @title || controller.action_name.humanize %></title>
+	<link rel="stylesheet" href="/stylesheets/store.css" type="text/css" />
 	<%= javascript_include_tag :defaults %>
 </head>
 
 <body id="<%= controller.action_name %>">
-	<div id="wrapper">
+	<div class="wrapper">
 		<div id="head">
-			<%= link_to "home", root_url %>
-			<%= login %>
+			<%= link_to image_tag('logo.gif'), root_url, :style => 'float: left' %>
+			<ul id="top_menu">
+				<li><a href="#">o společnosti</a></li>
+				<li><a href="#">všeobecné podmínky</a></li>
+				<li><a href="#">jak nakupovat</a></li>
+				<li><a href="#">kontakt</a></li>
+			</ul>
 		</div>
 		
 		<% flash.each do |key, msg| %>
 		  <%= content_tag :div, msg, :id => key, :class => 'flash' %>
 		<% end %>
 		
-		<div id="content">
-			<%= yield %>
+		<div id="body">
+			<div id="left">
+				<div id="categories">
+					<h3>kategorie</h3>
+					<%= render :partial => 'category', :locals => { :categories => @categories } %>
+				</div>
+			</div>
+			
+			<div id="content">
+				<%= yield %>
+			</div>
+			
+			<div id="right">
+				<%= login %>
+				
+				<%= hidden_div_if(@cart.size.zero?, :id => 'cart') %>
+					<%= render :partial => "cart", :object => @cart %>
+				</div>
+			</div>
 		</div>
+	</div>
+	
+	<div id="footer">
+			<div id="foot_info">
+				<div class="wrapper">
+					<div>
+						<h3>jak nakupovat</h3>
+						<p>Stručný popis, jak postupovat při nákupu přes náš internetový obchod.</p>
+					</div>
+			
+					<div>
+						<h3>garance nejnižší ceny</h3>
+						<p>Jako důkaz, že ceny držíme opravdu nízko, jsme připraveni garantovat nejnižší cenu.</p>
+					</div>
+			
+					<div>
+						<h3>aktuality</h3>
+						<p>5. září 2008: spuštění intern. obchodu<br />
+						3. září 2008: příprava spuštění<br />
+						internetového obchodu</p>
+					</div>
+			
+					<div>
+						<h3>kontaktujte nás</h3>
+						<p>telefon: 485 131 713<br />
+						mobil: 776 669 020<br />
+						email: info@e-shop.cz</p>
+					</div>
+				</div>	
+			</div>
+			<div id="copy">
+				<div class="wrapper">
+					<p>&copy; POLOMINO Services, spol. s r.o. 2008</p>
+				</div>
+			</div>
 	</div>
 </body>
 </html>

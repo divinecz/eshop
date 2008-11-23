@@ -3,6 +3,7 @@ class StoreController < ApplicationController
   before_filter :load_cart, :except => :empty_cart
 
   def index
+    @categories = Category.find_all_top_categories
     @products = Product.find_all_for_sale
   end
   
@@ -14,6 +15,12 @@ class StoreController < ApplicationController
   end
   
   def catalog
+    unless params[:category]
+      redirect_to root_path
+      return
+    end
+
+    @categories = Category.find_all_top_categories
     @category = Category.find(params[:category])
     @description = @category.description
     @keywords = @category.all_keywords.join(', ')

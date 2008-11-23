@@ -1,7 +1,5 @@
-	<div class="entry">
-		<h3><%= link_to h(product.title), :action => "product", :id => product %></h3>
-		<span class="manufacturer">Výrobce: <%= h product.manufacturer %></span>
-		<p><%= h product.description %></p>
+	<div class="product">
+		<h2><%= link_to h(product.title), :action => "product", :id => product %></h2>
 		<span class="price"><%= currency(product.price) %></span>
 
 		<%- form_remote_tag :url => add_to_cart_url(product) do -%>

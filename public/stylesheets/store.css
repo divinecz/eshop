@@ -1,0 +1,165 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+	border-collapse: collapse;
+}
+
+body {
+  background-color: #fff;
+  font: 100%/1.6 "Myriad Pro", Helvetica, Arial, sans-serif;
+  min-width: 980px;
+}
+
+h3 {
+	font-size: 120%;
+	color: #009234;
+}
+
+div.wrapper {
+  width: 980px;
+  margin: 0 auto;
+}
+
+div#head {
+	height: 8.3ex;
+	background: url(/images/top_menu_bg.gif) no-repeat bottom;
+	text-align: right;
+	padding-top: 4.4ex;
+	line-height: 1.2;
+}
+
+div#head a {
+	color: #999;
+	text-decoration: none;
+}
+
+div#head a:hover {
+  text-decoration: underline;
+}
+
+div#head img {
+	margin-top: -13px;
+}
+
+div#head ul#top_menu {
+	list-style: none;
+	overflow: hidden;
+	float: right;
+}
+
+div#head ul#top_menu li {
+	float: left;
+	padding: 0 1em;
+}
+
+div#head ul#top_menu li + li {
+	border-left: 1px solid #ccc;
+}
+
+div#body {
+  min-height: 48ex;
+  margin-top: 2ex;
+}
+
+div#left {
+	width: 180px;
+	float: left;
+}
+
+div#content {
+	width: 620px;
+	float: left;
+}
+
+div#content div#filters {
+	margin-left: 8px;
+}
+
+div#right {
+	width: 180px;
+	margin-left: 800px;
+}
+
+div#footer {
+  color: #fff;
+  clear: both;
+}
+
+div#footer p {
+  font-size: 80%;
+}
+
+div#foot_info {
+  background-color: #009234;
+  height: 20ex;
+}
+
+div#foot_info div.wrapper div {
+  width: 218px;
+  height: 16ex;
+  padding: 2px 15px 2px 0;
+  float: left;
+  margin: 2ex 0;
+}
+
+div#foot_info div.wrapper div + div {
+	padding-left: 15px;
+}
+
+div#foot_info div h3 {
+  color: #aff19c;
+  margin-bottom: .5em;
+}
+
+div#foot_info div + div {
+  border-left: 1px solid #fff;
+}
+
+div#footer div#copy {
+  background-color: #006929;
+  padding: .7em 1em;
+	color: #20a534;
+	text-align: right;
+}
+
+div#cart td {
+	padding: 0 .7em;
+}
+
+div#cart table {
+	width: 100%;
+	font-size: 80%;
+}
+
+div#cart tr.title {
+	background-color: #eee;
+}
+
+div#cart tr.title td, div#cart tr.total td {
+	padding-top: .3em;
+}
+
+div#cart tr.total td {
+	color: #009234;
+	border-top: 1px solid #009234;
+	border-bottom: 1px solid #009234;
+}
+
+div.product {
+	width: 172px;
+	height: 160px;
+	float: left;
+	margin: 12px 8px;
+	padding: 4px 8px;
+	border: 1px solid #ddd;
+}
+
+.right {
+	text-align: right;
+}
