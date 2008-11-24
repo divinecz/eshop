@@ -10,6 +10,6 @@ module ApplicationHelper
   end
   
   def currency(n)
-    number_to_currency(n, :unit => "", :delimiter => " ", :precision => 0)+" Kč"
+    number_to_currency(n, :unit => "", :delimiter => "&nbsp;", :precision => 0)+"&nbsp;Kč"
   end
 end

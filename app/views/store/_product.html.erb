@@ -1,8 +1,12 @@
 	<div class="product">
 		<h2><%= link_to h(product.title), :action => "product", :id => product %></h2>
-		<span class="price"><%= currency(product.price) %></span>
+		
+		<%= image_tag 'product_img.gif' %>
+		
+		<span class="bigprice"><%= currency(product.price) %></span>
+		<span class="price">s DPH <%= currency(product.price*1.19) %></span>
 
 		<%- form_remote_tag :url => add_to_cart_url(product) do -%>
-			<%= submit_tag "Přidat do košíku" %>
+			<%= submit_tag "Do košíku" %>
 		<%- end -%>
 	</div>

@@ -37,7 +37,7 @@ class Category < ActiveRecord::Base
   end
   
   def full_title
-    has_parent? ? parent.full_title + " / " + title : title
+    has_parent? ? parent.full_title + " > " + title : title
   end
   
   def all_products_for_sale
@@ -45,16 +45,7 @@ class Category < ActiveRecord::Base
   end
   
   def find_all_products
-    has_children? ? products(:include => :manufacturer) + children.collect(&:find_all_products).first : products(:include => :manufacturer) #TODO: proc tam je nutnost .first? (pole v poli)
-  end
-  
-  def self.all_to_html
-    "<ul>#{find_all_top_categories.collect(&:to_html)}</ul>" #TODO: no toto by snad melo byt v hlprech, nie?
-  end
-  
-  def to_html
-    return "" if all_products_for_sale.empty?
-    has_children? ? "<li><a href=\"/catalog/#{id}\">#{title}</a><ul>#{children.collect(&:to_html)}</ul></li>" : "<li><a href=\"/catalog/#{id}\">#{title}</a></li>" #TODO: no toto by snad melo byt v hlprech, nie?
+    has_children? ? products(:include => :manufacturer) + children.collect(&:find_all_products).last : products(:include => :manufacturer) #TODO: proc tam je nutnost .first? (pole v poli)
   end
   
   def all_keywords

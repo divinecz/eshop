@@ -1,17 +1,17 @@
 <%= hidden_div_if(session[:user_id], :id => 'checkout-login') %>
-	<p>Pokud již máte učet, zadejte prosím své přihlašovací údaje.</p>
+	<h2>Pokud již máte učet, zadejte prosím své přihlašovací údaje.</h2>
 	<% form_tag :controller => 'login', :action => 'index' do %> 
 	<p> 
-	<label for="name">Email:</label> 
+	<label for="name">e-mail:</label> 
 	<%= text_field_tag :email, params[:email] %> 
 	</p> 
 	<p> 
-	<label for="password">Password:</label> 
+	<label for="password">heslo:</label> 
 	<%= password_field_tag :password, params[:password] %> 
 	</p> 
 	<p>
 	<%= hidden_field_tag :return_uri, url_for(:action => 'checkout') %>
-	<%= submit_tag "Login" %> 
+	<%= submit_tag "Přihlásit" %> 
 	</p> 
 	<% end %>
 </div>
@@ -20,49 +20,49 @@
 <%= error_messages_for 'user' %> 
 <%= error_messages_for 'order' %> 
 <fieldset> 
-<legend>Please Enter Your Details</legend> 
+<h2>Kontaktní údaje</h2> 
 <% form_for :user, :url => { :action => :place_order } do |form| %> 
 <%- unless session[:user_id] -%>
 <p> 
-<label for="order_email">E-Mail:</label> 
-<%= form.text_field :email, :size => 40 %> 
+<label for="order_email">e-mail:</label> 
+<%= form.text_field :email %> 
 </p>
 <%- end -%>
 <p> 
-<label for="order_name">First Name:</label> 
-<%= form.text_field :first_name, :size => 40 %> 
+<label for="order_name">jméno:</label> 
+<%= form.text_field :first_name %> 
 </p>
 <p> 
-<label for="order_name">Last Name:</label> 
-<%= form.text_field :last_name, :size => 40 %> 
+<label for="order_name">příjmení:</label> 
+<%= form.text_field :last_name %> 
 </p>
 <p> 
-<label for="order_address">Street:</label> 
-<%= form.text_field :street, :size => 40 %> 
+<label for="order_address">ulice:</label> 
+<%= form.text_field :street %> 
 </p> 
 <p> 
-<label for="order_address">City:</label> 
-<%= form.text_field :city, :size => 40 %> 
+<label for="order_address">město:</label> 
+<%= form.text_field :city %> 
 </p>
 <p> 
-<label for="order_address">ZIP:</label> 
-<%= form.text_field :zip, :size => 40, :maxlength => 6 %> 
+<label for="order_address">psč:</label> 
+<%= form.text_field :zip, :maxlength => 6 %> 
 </p>
 <p> 
-<label for="order_phone">Phone:</label> 
-<%= form.text_field :phone, :size => 40, :maxlength => 18 %> 
+<label for="order_phone">telefon:</label> 
+<%= form.text_field :phone, :maxlength => 18 %> 
 </p>
 <%- unless session[:user_id] -%>
 <p> 
-<label for="order_password">Password:</label> 
-<%= form.password_field :password, :size => 40, :maxlength => 30 %> 
+<label for="order_password">heslo:</label> 
+<%= form.password_field :password, :maxlength => 30 %> 
 </p>
 <p> 
-<label for="order_password_confirm">Password Confirmation:</label> 
-<%= form.password_field :password_confirmation, :size => 40, :maxlength => 30 %> 
+<label for="order_password_confirm">potvrzení hesla:</label> 
+<%= form.password_field :password_confirmation, :maxlength => 30 %> 
 </p>
 <%- end -%>
-<%= submit_tag "Place Order", :class => "submit" %> 
+<%= submit_tag "Potvrdit objednáku", :class => "submit" %> 
 <% end %> 
 </fieldset> 
 </div>

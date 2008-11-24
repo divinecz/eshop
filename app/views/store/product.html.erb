@@ -1,28 +1,23 @@
-<div id="categories">
-	<%= Category.all_to_html -%>
-</div>
-
-<div id="product_categories">
+<p class="nav">
 	<%- @product.categories.each do |category| -%>
 		<%- category.all_parents.each do |parent| -%>
-			<%= link_to h(parent.title), :action => "catalog", :id => parent %> /
+			<%= link_to h(parent.title), :action => "catalog", :id => parent %> >
 		<%- end -%>
 		<%= link_to h(category.title), :action => "catalog", :id => category %>
 		<br/>
 	<%- end -%>
-</div>
+</p>
+
+<%= image_tag 'product_img_big.jpg' %>
 
 <h1><%= h @product.title %></h1>
 <h2><%= h @product.manufacturer %></h2>
 
 <p><%= h @product.description %></p>
 
-<span class="price"><%= currency @product.price %></span>
+<span class="bigprice"><%= currency(@product.price) %></span>
+<span class="price">s DPH <%= currency(@product.price*1.19) %></span>
 
 <%- form_remote_tag :url => add_to_cart_url(@product) do -%>
 	<%= submit_tag "Přidat do košíku" %>
 <%- end -%>
-
-<%= hidden_div_if(@cart.size.zero?, :id => 'cart') %>
-	<%= render :partial => "cart", :object => @cart %>
-</div>

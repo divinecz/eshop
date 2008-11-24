@@ -1,7 +1,7 @@
 <tr class="title">
-	<td colspan="2">
+	<td><%= h(cart_item.title) %></td>
+	<td class="right">
 		<%= link_to_remote "[x]", {:url => { :action => "remove_cart_item", :id => cart_item.id }}, :href => url_for(:action => "remove_cart_item", :id => cart_item.id) %>
-		<%= h(cart_item.title) %>
 	</td>
 </tr>
 
@@ -10,6 +10,6 @@
 <% else %> 
 <tr>
 <% end %>
-<td><%= text_field_tag "quantities[]", cart_item.quantity, :size => 2, :id => 'cart_item_'+cart_item.id.to_s %> ks</td>
-<td class="right"><%= currency(cart_item.price) %></td>
+<td><%= text_field_tag "quantities[]", cart_item.quantity, :size => 2, :id => 'cart_item_'+cart_item.id.to_s, :class => 'right' %>&nbsp;ks</td>
+<td class="right"><%= currency(cart_item.price*1.19) %></td>
 </tr> 

@@ -1,7 +1,7 @@
 module StoreHelper
   
   def description
-    @description || "Elektronický obchod — E-shop"
+    @description || "Elektronický obchod – E-shop"
   end
   
   def keywords

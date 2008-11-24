@@ -3,7 +3,6 @@ class StoreController < ApplicationController
   before_filter :load_cart, :except => :empty_cart
 
   def index
-    @categories = Category.find_all_top_categories
     @products = Product.find_all_for_sale
   end
   
@@ -20,13 +19,12 @@ class StoreController < ApplicationController
       return
     end
 
-    @categories = Category.find_all_top_categories
     @category = Category.find(params[:category])
     @description = @category.description
     @keywords = @category.all_keywords.join(', ')
     @products = @category.all_products_for_sale
     @manufacturers = @products.collect(&:manufacturer).uniq
-    @title = @category.has_parent? ? [@category.all_parents.collect(&:title).join(' — '), @category.title].join(' — ') : @category.title
+    @title = @category.has_parent? ? [@category.all_parents.collect(&:title).join(' – '), @category.title].join(' – ') : @category.title
     
     if request.post?
       @filter = CatalogFilter.new(params[:filter]) 
@@ -43,7 +41,7 @@ class StoreController < ApplicationController
       if @order.save
         PostOffice.deliver_order(@user, @order)
         session[:cart] = nil
-        redirect_to_index("Objednavka nazdar!")
+        redirect_to_index("Objednavka byla odeslána k zpracování.")
       else
         render :action => "checkout"
       end
@@ -67,7 +65,7 @@ class StoreController < ApplicationController
   
   def checkout
     if @cart.size.zero?
-      redirect_to_index("Your cart is empty", 3) 
+      redirect_to_index("Nelze potvrdit objednávku—košík je prázdný!", 3) 
     else 
       @user = User.find_by_id(session[:user_id])
     end
@@ -104,5 +102,6 @@ class StoreController < ApplicationController
   protected
   def load_cart
     @cart = (session[:cart] ||= Cart.new)
+    @categories = Category.find_all_top_categories
   end
 end

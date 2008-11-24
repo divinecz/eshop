@@ -1,16 +1,9 @@
 class Cart
   attr_accessor :items
   
-  @@instance = 0
-  
-  def self.instance
-    @@instance
-  end
-  
   def initialize
     @items = []
     @id = 0
-    @@instance += 1
   end
   
   def update_cart(quantities)

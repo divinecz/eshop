@@ -10,7 +10,7 @@
 			<%= link_to category, catalog_path(category) -%>
 		<%- else -%>
 			<li class="open">
-			<%= link_to category, catalog_path(category.parent) -%>
+			<%= link_to category, catalog_path(category.parent || category) -%>
 			<%= render :partial => 'category', :locals => { :categories => category.children } -%>
 		<%- end -%>
 		</li>
