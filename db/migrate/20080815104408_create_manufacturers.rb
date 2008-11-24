@@ -1,6 +1,6 @@
 class CreateManufacturers < ActiveRecord::Migration
   def self.up
-    create_table :manufacturers do |t|
+    create_table :manufacturers, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.string :name
       t.timestamps
     end

@@ -1,6 +1,6 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
-    create_table :users do |t|
+    create_table :users, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.string   "email", :default => ""
       t.string   "hashed_password"
       t.string   "salt"

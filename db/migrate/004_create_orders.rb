@@ -1,6 +1,6 @@
 class CreateOrders < ActiveRecord::Migration
   def self.up
-    create_table :orders do |t|
+    create_table :orders, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.integer :user_id
       t.timestamps
     end

@@ -1,6 +1,6 @@
 class CreateKeywords < ActiveRecord::Migration
   def self.up
-    create_table :keywords do |t|
+    create_table :keywords, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.string :name
       t.timestamps
     end
