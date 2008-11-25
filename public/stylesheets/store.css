@@ -267,6 +267,7 @@ div.product h2 a {
 	color: #009234;
 	display: block;
 	height: 160px;
+	z-index: 5;
 }
 
 div#products div.product h2 {
@@ -299,6 +300,10 @@ div.product form input {
 	position: absolute;
 	z-index: 10;
 	margin-top: 10px;
+}
+
+.invisible {
+  display: none;
 }
 
 .right {

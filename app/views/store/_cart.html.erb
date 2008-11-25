@@ -1,14 +1,16 @@
-<h3>košík</h3>
-<table> 
+<%= hidden_div_if(@cart.size.zero?, :id => 'cart') %>
+	<h3>košík</h3>
+	<table> 
+		<%- form_for :cart, :url => {:action => 'update_cart'}, :html => {:autocomplete => "off"} do -%>
+			<%= render :partial => 'cart_item', :collection => cart.items %>
+			<%= submit_tag 'aktualizovat', :class => 'invisible' %>
+		<%- end -%>
 	
-	<%- form_tag :action => 'update_cart' do # TODO: :html => {:autocomplete => "off"} -%>
-		<%= render :partial => 'cart_item', :collection => cart.items %>
-	<%- end -%>
-	
-<tr class="total"> 
-	<td>Celkem s DPH</td> 
-	<td class="right"><%= currency(cart.total_price*1.19) %></td> 
-</tr> 
-</table> 
+	<tr class="total"> 
+		<td>Celkem s DPH</td> 
+		<td class="right"><%= currency(cart.total_price*1.19) %></td> 
+	</tr> 
+	</table> 
 
-<span class="checkout icon"><%= link_to "Vytvořit objednávku", :action => "checkout" %></span>
+	<span class="checkout icon"><%= link_to "Vytvořit objednávku", :action => "checkout" %></span>
+</div>

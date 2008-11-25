@@ -6,10 +6,10 @@
 </tr>
 
 <% if cart_item == @item %> <%# TODO: Mozna udelat helper metodu — metoda(podminka, tag, parametry pri podminka, [parametry pri !podminka]) %>
-<tr class="current_item"> 
+<tr id="current_item"> 
 <% else %> 
 <tr>
 <% end %>
 <td><%= text_field_tag "quantities[]", cart_item.quantity, :size => 2, :id => 'cart_item_'+cart_item.id.to_s, :class => 'right' %>&nbsp;ks</td>
 <td class="right"><%= currency(cart_item.price*1.19) %></td>
-</tr> 
+</tr>

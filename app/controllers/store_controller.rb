@@ -80,7 +80,7 @@ class StoreController < ApplicationController
       #TODO: zustane adresa, ale vypise se index render :action => "index" nebo referer?
     else
       @item = @cart.add(product)
-      redirect_to request.env['HTTP_REFERER'] unless request.xhr?
+      redirect_to :back unless request.xhr?
     end
   end
   

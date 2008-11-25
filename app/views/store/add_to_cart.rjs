@@ -6,4 +6,4 @@ page[:cart].visual_effect(:slide_down, :duration => 0.5) if @cart.size == 1
 
 page[:cart].show if @cart.size > 1
 
-page.select("tr.current_item").each { |tr| tr.visual_effect :highlight }
+page[:current_item].visual_effect :highlight
