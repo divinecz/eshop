@@ -41,8 +41,9 @@
 			
 			<div id="right">
 				<%#= login %>
-				
-				<%= render :partial => "cart", :object => @cart %>
+				<%= hidden_div_if(@cart.size.zero?, :id => 'cart') %>
+					<%= render :partial => "cart", :object => @cart %>
+				</div>
 			</div>
 		</div>
 	</div>
